@@ -26,6 +26,7 @@
 
       </div>
 
+
       <div class="quote">
         “Smarter Students<br>
         Stronger Futures”
@@ -59,39 +60,64 @@
       <div class="features">
 
         <div class="feature">
-          <div class="feature-icon">📊</div>
+
+          <div class="feature-icon">
+            📊
+          </div>
+
           <span>
             Track<br>
             Progress
           </span>
+
         </div>
 
+
         <div class="feature">
-          <div class="feature-icon">🧠</div>
+
+          <div class="feature-icon">
+            🧠
+          </div>
+
           <span>
             Get<br>
             AI Insights
           </span>
+
         </div>
 
+
         <div class="feature">
-          <div class="feature-icon">🎯</div>
+
+          <div class="feature-icon">
+            🎯
+          </div>
+
           <span>
             Identify<br>
             Opportunities
           </span>
+
         </div>
 
+
         <div class="feature">
-          <div class="feature-icon">🌱</div>
+
+          <div class="feature-icon">
+            🌱
+          </div>
+
           <span>
             Grow<br>
             Your Future
           </span>
+
         </div>
 
       </div>
 
+
+      <!-- BOTTOM QUOTE -->
 
       <div class="bottom-quote">
         Know. Grow. Excel.
@@ -108,20 +134,27 @@
 
     <div class="login-container">
 
-      <!-- REGISTER -->
+
+      <!-- ================= REGISTER ================= -->
 
       <div class="top-register">
 
-        <span>New here?</span>
+        <span>
+          New here?
+        </span>
 
-<button class="register-btn" (click)="goToRegister()">
-  Create an account
-</button>
+        <button
+          type="button"
+          class="register-btn"
+          (click)="goToRegister()"
+        >
+          Create an account
+        </button>
 
       </div>
 
 
-      <!-- LOGIN FORM -->
+      <!-- ================= LOGIN BOX ================= -->
 
       <div class="login-box">
 
@@ -134,7 +167,7 @@
         </div>
 
 
-        <!-- EMAIL -->
+        <!-- ================= EMAIL / USERNAME ================= -->
 
         <div class="form-group">
 
@@ -150,6 +183,8 @@
 
             <input
               type="text"
+              name="emailOrUsername"
+              [(ngModel)]="emailOrUsername"
               placeholder="Enter your email or username"
             >
 
@@ -158,7 +193,7 @@
         </div>
 
 
-        <!-- PASSWORD -->
+        <!-- ================= PASSWORD ================= -->
 
         <div class="form-group">
 
@@ -174,6 +209,8 @@
 
             <input
               type="password"
+              name="password"
+              [(ngModel)]="password"
               placeholder="Enter your password"
             >
 
@@ -186,7 +223,7 @@
         </div>
 
 
-        <!-- OPTIONS -->
+        <!-- ================= OPTIONS ================= -->
 
         <div class="options">
 
@@ -194,6 +231,8 @@
 
             <input
               type="checkbox"
+              name="rememberMe"
+              [(ngModel)]="rememberMe"
             >
 
             <span>
@@ -202,6 +241,7 @@
 
           </label>
 
+
           <span class="forgot">
             Forgot password?
           </span>
@@ -209,26 +249,40 @@
         </div>
 
 
-        <!-- LOGIN -->
+        <!-- ================= LOGIN BUTTON ================= -->
 
-        <button class="login-btn">
+        <button
+          type="button"
+          class="login-btn"
+          (click)="login()"
+        >
+
           Login
-          <span>→</span>
+
+          <span>
+            →
+          </span>
+
         </button>
 
 
-        <!-- OR -->
+        <!-- ================= OR DIVIDER ================= -->
 
         <div class="or-divider">
           OR
         </div>
 
 
-        <!-- SOCIAL LOGIN -->
+        <!-- ================= SOCIAL LOGIN ================= -->
 
         <div class="social-buttons">
 
-          <button class="social-btn">
+          <!-- GOOGLE -->
+
+          <button
+            type="button"
+            class="social-btn"
+          >
 
             <span class="google-icon">
               G
@@ -239,13 +293,20 @@
           </button>
 
 
-          <button class="social-btn">
+          <!-- MICROSOFT -->
+
+          <button
+            type="button"
+            class="social-btn"
+          >
 
             <span class="microsoft-icon">
+
               <i></i>
               <i></i>
               <i></i>
               <i></i>
+
             </span>
 
             Continue with Microsoft
@@ -254,6 +315,8 @@
 
         </div>
 
+
+        <!-- ================= BOTTOM QUOTE ================= -->
 
         <div class="bottom-right-quote">
           “Empowering Students, Enriching Campuses”
