@@ -1,0 +1,412 @@
+<div class="department-page">
+
+  <!-- ================= TOP HEADER ================= -->
+
+  <div class="top-section">
+
+    <div class="page-heading">
+
+      <div>
+        <h1>Departments</h1>
+
+        <p>
+          Manage academic departments, their details, HODs, and associated courses.
+        </p>
+      </div>
+
+      <div class="heading-right">
+
+        <div class="breadcrumb">
+          <span>Admin</span>
+          <span>/</span>
+          <strong>Departments</strong>
+        </div>
+
+        <button
+          class="add-btn"
+          (click)="addDepartment()"
+        >
+          <span class="plus">+</span>
+          Add Department
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= STATISTICS ================= -->
+
+  <div class="stats-grid">
+
+    <!-- TOTAL DEPARTMENTS -->
+    <div class="stat-card purple-card">
+
+      <div class="stat-icon purple-icon">
+        🏛️
+      </div>
+
+      <div class="stat-content">
+
+        <span>Total Departments</span>
+
+        <h2>12</h2>
+
+        <div class="growth">
+          <span>↑ 1</span>
+          <small>vs last semester</small>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL FACULTY -->
+    <div class="stat-card green-card">
+
+      <div class="stat-icon green-icon">
+        👥
+      </div>
+
+      <div class="stat-content">
+
+        <span>Total Faculty</span>
+
+        <h2>86</h2>
+
+        <div class="growth">
+          <span>↑ 4</span>
+          <small>vs last semester</small>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL COURSES -->
+    <div class="stat-card orange-card">
+
+      <div class="stat-icon orange-icon">
+        📖
+      </div>
+
+      <div class="stat-content">
+
+        <span>Total Courses</span>
+
+        <h2>42</h2>
+
+        <div class="growth">
+          <span>↑ 6</span>
+          <small>vs last semester</small>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL SUBJECTS -->
+    <div class="stat-card blue-card">
+
+      <div class="stat-icon blue-icon">
+        🎓
+      </div>
+
+      <div class="stat-content">
+
+        <span>Total Subjects</span>
+
+        <h2>156</h2>
+
+        <div class="growth">
+          <span>↑ 12</span>
+          <small>vs last semester</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= FILTER SECTION ================= -->
+
+  <div class="filter-card">
+
+    <div class="search-box">
+
+      <span class="search-icon">⌕</span>
+
+      <input
+        type="text"
+        placeholder="Search department name, HOD, or code..."
+        [(ngModel)]="searchText"
+      />
+
+    </div>
+
+
+    <select
+      class="filter-select"
+      [(ngModel)]="selectedCollege"
+    >
+      <option>All Colleges</option>
+      <option>Engineering College</option>
+      <option>Management College</option>
+      <option>Science College</option>
+    </select>
+
+
+    <select
+      class="filter-select status-select"
+      [(ngModel)]="selectedStatus"
+    >
+      <option>Active Departments</option>
+      <option>All Departments</option>
+      <option>Inactive Departments</option>
+    </select>
+
+
+    <button
+      class="reset-btn"
+      (click)="resetFilters()"
+    >
+      ↻
+      Reset
+    </button>
+
+  </div>
+
+
+  <!-- ================= DEPARTMENT TABLE ================= -->
+
+  <div class="table-card">
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th class="checkbox-column">
+              <input type="checkbox">
+            </th>
+
+            <th class="number-column">
+              #
+            </th>
+
+            <th>
+              Department Name
+              <span class="sort">↕</span>
+            </th>
+
+            <th>
+              Department Code
+              <span class="sort">↕</span>
+            </th>
+
+            <th>
+              HOD
+              <span class="sort">↕</span>
+            </th>
+
+            <th>
+              Faculty Count
+              <span class="sort">↕</span>
+            </th>
+
+            <th>
+              Courses
+              <span class="sort">↕</span>
+            </th>
+
+            <th>
+              Status
+              <span class="sort">↕</span>
+            </th>
+
+            <th class="actions-column">
+              Actions
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr
+            *ngFor="let department of filteredDepartments"
+          >
+
+            <!-- CHECKBOX -->
+            <td class="checkbox-column">
+              <input type="checkbox">
+            </td>
+
+
+            <!-- NUMBER -->
+            <td class="number-column">
+              {{ department.id }}
+            </td>
+
+
+            <!-- DEPARTMENT -->
+            <td>
+
+              <div class="department-name">
+
+                <div
+                  class="department-icon"
+                  [ngClass]="department.type"
+                >
+                  {{ department.icon }}
+                </div>
+
+                <span>
+                  {{ department.name }}
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <!-- CODE -->
+            <td>
+              <span class="department-code">
+                {{ department.code }}
+              </span>
+            </td>
+
+
+            <!-- HOD -->
+            <td>
+              <span class="hod-name">
+                {{ department.hod }}
+              </span>
+            </td>
+
+
+            <!-- FACULTY -->
+            <td>
+              {{ department.faculty }}
+            </td>
+
+
+            <!-- COURSES -->
+            <td>
+              {{ department.courses }}
+            </td>
+
+
+            <!-- STATUS -->
+            <td>
+
+              <span
+                class="status"
+                [class.active]="department.status === 'Active'"
+                [class.inactive]="department.status === 'Inactive'"
+              >
+
+                <span class="status-dot"></span>
+
+                {{ department.status }}
+
+              </span>
+
+            </td>
+
+
+            <!-- ACTIONS -->
+            <td>
+
+              <div class="actions">
+
+                <button
+                  class="action-btn view-btn"
+                  title="View"
+                  (click)="viewDepartment(department)"
+                >
+                  👁
+                </button>
+
+                <button
+                  class="action-btn edit-btn"
+                  title="Edit"
+                  (click)="editDepartment(department)"
+                >
+                  ↗
+                </button>
+
+                <button
+                  class="action-btn delete-btn"
+                  title="Delete"
+                  (click)="deleteDepartment(department)"
+                >
+                  🗑
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- ================= TABLE FOOTER ================= -->
+
+    <div class="table-footer">
+
+      <div class="showing-text">
+        Showing <strong>1</strong> to
+        <strong>{{ filteredDepartments.length }}</strong>
+        of <strong>12</strong> departments
+      </div>
+
+
+      <div class="pagination">
+
+        <button class="page-arrow">
+          «
+        </button>
+
+        <button class="page-number active-page">
+          1
+        </button>
+
+        <button class="page-number">
+          2
+        </button>
+
+        <button class="page-number">
+          »
+        </button>
+
+        <button class="page-arrow">
+          »
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

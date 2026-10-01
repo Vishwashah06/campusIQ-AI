@@ -1,0 +1,544 @@
+<div class="admin-page">
+
+  <!-- ================= TOP HEADER ================= -->
+ 
+
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- PAGE TITLE -->
+    <section class="page-heading">
+
+      <div>
+        <h1>My Profile</h1>
+
+        <p>
+          Manage your personal information, administrative details,
+          and account settings.
+        </p>
+      </div>
+
+      <div class="heading-right">
+
+        <div class="quote">
+          <i>
+            "Efficient Administration<br>
+            for a Smarter Campus"
+          </i>
+        </div>
+
+        <div class="breadcrumb">
+          <a
+            routerLink="/admin/dashboard"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Home
+          </a>
+
+          <span>›</span>
+
+          <strong>My Profile</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PROFILE HERO ================= -->
+    <section class="profile-banner">
+
+      <div class="profile-picture-wrapper">
+
+        <div class="profile-picture">
+          <span>👤</span>
+        </div>
+
+        <button class="camera-button">
+          📷
+        </button>
+
+      </div>
+
+
+      <div class="profile-info">
+
+        <h2>{{ adminName }}</h2>
+
+        <h3>{{ adminRole }}</h3>
+
+        <p>{{ adminDepartment }}</p>
+
+
+        <div class="profile-meta">
+
+          <span>
+            🏢 {{ adminDepartment }}
+          </span>
+
+          <span class="separator">|</span>
+
+          <span>
+            🆔 {{ adminId }}
+          </span>
+
+          <span class="separator">|</span>
+
+          <span>
+            ✉ {{ adminEmail }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="edit-profile-btn"
+        (click)="editProfile()"
+      >
+        ✎ Edit Profile
+      </button>
+
+    </section>
+
+
+    <!-- ================= STAT CARDS ================= -->
+    <section class="stats-grid">
+
+      <!-- USERS -->
+      <div class="stat-card purple">
+
+        <div class="stat-icon">
+          👥
+        </div>
+
+        <div class="stat-content">
+          <h2>{{ totalUsers | number }}</h2>
+          <p>Total Users</p>
+        </div>
+
+      </div>
+
+
+      <!-- DEPARTMENTS -->
+      <div class="stat-card green">
+
+        <div class="stat-icon">
+          🏛
+        </div>
+
+        <div class="stat-content">
+          <h2>{{ departments }}</h2>
+          <p>Departments</p>
+        </div>
+
+      </div>
+
+
+      <!-- COURSES -->
+      <div class="stat-card orange">
+
+        <div class="stat-icon">
+          🎓
+        </div>
+
+        <div class="stat-content">
+          <h2>{{ courses }}</h2>
+          <p>Total Courses</p>
+        </div>
+
+      </div>
+
+
+      <!-- SUBJECTS -->
+      <div class="stat-card blue">
+
+        <div class="stat-icon">
+          📚
+        </div>
+
+        <div class="stat-content">
+          <h2>{{ subjects }}</h2>
+          <p>Total Subjects</p>
+        </div>
+
+      </div>
+
+
+      <!-- ACTIVITIES -->
+      <div class="stat-card pink">
+
+        <div class="stat-icon">
+          ⚙
+        </div>
+
+        <div class="stat-content">
+          <h2>{{ adminActivities }}</h2>
+          <p>Admin Activities</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= INFORMATION AREA ================= -->
+    <section class="content-grid">
+
+
+      <!-- PERSONAL INFORMATION -->
+      <div class="info-card">
+
+        <div class="card-heading">
+
+          <div class="heading-icon purple-icon">
+            👤
+          </div>
+
+          <div>
+            <h3>Personal Information</h3>
+            <p>Basic administrator information</p>
+          </div>
+
+          <button class="small-edit">
+            Edit
+          </button>
+
+        </div>
+
+
+        <div class="info-list">
+
+          <div class="info-row">
+            <span>Full Name</span>
+            <strong>{{ adminName }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Date of Birth</span>
+            <strong>Not Disclosed</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Gender</span>
+            <strong>Not Disclosed</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Email Address</span>
+            <strong>{{ adminEmail }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Mobile Number</span>
+            <strong>+91 98765 43210</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Address</span>
+            <strong>Surat, Gujarat, India</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ADMINISTRATIVE INFORMATION -->
+      <div class="info-card">
+
+        <div class="card-heading">
+
+          <div class="heading-icon blue-icon">
+            🏢
+          </div>
+
+          <div>
+            <h3>Administrative Information</h3>
+            <p>Organization and role details</p>
+          </div>
+
+          <button class="small-edit">
+            Edit
+          </button>
+
+        </div>
+
+
+        <div class="info-list">
+
+          <div class="info-row">
+            <span>Role</span>
+            <strong>{{ adminRole }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Department</span>
+            <strong>{{ adminDepartment }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Admin ID</span>
+            <strong>{{ adminId }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Access Level</span>
+            <strong>Full Administrator</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Account Status</span>
+            <strong class="status-active">
+              ● Active
+            </strong>
+          </div>
+
+          <div class="info-row">
+            <span>Last Login</span>
+            <strong>Today, 09:42 AM</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACCOUNT SETTINGS -->
+      <div class="info-card settings-card">
+
+        <div class="card-heading">
+
+          <div class="heading-icon green-icon">
+            ⚙
+          </div>
+
+          <div>
+            <h3>Account Settings</h3>
+            <p>Manage your administrator account</p>
+          </div>
+
+        </div>
+
+
+        <div class="settings-list">
+
+
+          <button
+            class="setting-item"
+            (click)="changePassword()"
+          >
+
+            <div class="setting-icon">
+              🔑
+            </div>
+
+            <div class="setting-text">
+              <strong>Change Password</strong>
+              <span>Update your account password</span>
+            </div>
+
+            <span class="setting-arrow">›</span>
+
+          </button>
+
+
+          <button
+            class="setting-item"
+            (click)="twoFactorAuthentication()"
+          >
+
+            <div class="setting-icon">
+              🛡
+            </div>
+
+            <div class="setting-text">
+              <strong>Two-Factor Authentication</strong>
+              <span>Protect your administrator account</span>
+            </div>
+
+            <span class="setting-arrow">›</span>
+
+          </button>
+
+
+          <button
+            class="setting-item"
+            (click)="notificationPreferences()"
+          >
+
+            <div class="setting-icon">
+              🔔
+            </div>
+
+            <div class="setting-text">
+              <strong>Notification Preferences</strong>
+              <span>Manage system notifications</span>
+            </div>
+
+            <span class="setting-arrow">›</span>
+
+          </button>
+
+
+          <button
+            class="setting-item"
+            (click)="privacySettings()"
+          >
+
+            <div class="setting-icon">
+              🔒
+            </div>
+
+            <div class="setting-text">
+              <strong>Privacy Settings</strong>
+              <span>Manage your privacy preferences</span>
+            </div>
+
+            <span class="setting-arrow">›</span>
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= BOTTOM AREA ================= -->
+    <section class="bottom-grid">
+
+
+      <!-- RECENT ACTIVITY -->
+      <div class="bottom-card">
+
+        <div class="bottom-card-heading">
+
+          <div>
+            <h3>Recent Admin Activity</h3>
+            <p>Your latest administrative actions</p>
+          </div>
+
+          <a routerLink="/admin/dashboard">
+            View All →
+          </a>
+
+        </div>
+
+
+        <div class="activity-list">
+
+          <div class="activity-item">
+
+            <div class="activity-icon purple">
+              👤
+            </div>
+
+            <div>
+              <strong>New student registered</strong>
+              <span>2 hours ago</span>
+            </div>
+
+          </div>
+
+
+          <div class="activity-item">
+
+            <div class="activity-icon green">
+              🎓
+            </div>
+
+            <div>
+              <strong>New course added</strong>
+              <span>4 hours ago</span>
+            </div>
+
+          </div>
+
+
+          <div class="activity-item">
+
+            <div class="activity-icon orange">
+              📚
+            </div>
+
+            <div>
+              <strong>Subject updated</strong>
+              <span>Yesterday</span>
+            </div>
+
+          </div>
+
+
+          <div class="activity-item">
+
+            <div class="activity-icon blue">
+              🏢
+            </div>
+
+            <div>
+              <strong>Department information updated</strong>
+              <span>2 days ago</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- QUICK NAVIGATION -->
+      <div class="bottom-card">
+
+        <div class="bottom-card-heading">
+
+          <div>
+            <h3>Quick Navigation</h3>
+            <p>Access important admin modules</p>
+          </div>
+
+        </div>
+
+
+        <div class="quick-links">
+
+          <a
+            routerLink="/admin/dashboard"
+            class="quick-link"
+          >
+            <span>🏠</span>
+            <div>
+              <strong>Dashboard</strong>
+              <small>View admin dashboard</small>
+            </div>
+            <b>→</b>
+          </a>
+
+
+          <a
+            routerLink="/admin/profile"
+            class="quick-link"
+          >
+            <span>👤</span>
+            <div>
+              <strong>My Profile</strong>
+              <small>Manage administrator profile</small>
+            </div>
+            <b>→</b>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>

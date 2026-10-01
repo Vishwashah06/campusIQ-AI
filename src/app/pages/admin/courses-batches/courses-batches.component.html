@@ -1,0 +1,543 @@
+<div class="courses-page">
+
+  <!-- ================= PAGE HEADER ================= -->
+
+  <div class="page-header">
+
+    <div class="header-left">
+
+      <h1>Courses &amp; Batches</h1>
+
+      <p>
+        Manage all courses and their batches. Create, edit, and track course
+        details, batch schedules, and enrollments.
+      </p>
+
+    </div>
+
+    <div class="header-right">
+
+      <div class="breadcrumb">
+        <span>Admin</span>
+        <b>/</b>
+        <span>Courses &amp; Batches</span>
+      </div>
+
+      <button class="add-course-btn" (click)="addCourse()">
+        <span class="plus">+</span>
+        Add Course
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= STAT CARDS ================= -->
+
+  <div class="stats-grid">
+
+    <!-- Total Courses -->
+
+    <div class="stat-card purple-card">
+
+      <div class="stat-icon purple-icon">
+        🎓
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Total Courses
+        </span>
+
+        <strong>
+          {{ totalCourses }}
+        </strong>
+
+        <span class="growth">
+          ↑ 4
+        </span>
+
+        <small>
+          vs last semester
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- Total Batches -->
+
+    <div class="stat-card green-card">
+
+      <div class="stat-icon green-icon">
+        👥
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Total Batches
+        </span>
+
+        <strong>
+          {{ totalBatches }}
+        </strong>
+
+        <span class="growth">
+          ↑ 6
+        </span>
+
+        <small>
+          vs last semester
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- Total Enrollments -->
+
+    <div class="stat-card orange-card">
+
+      <div class="stat-icon orange-icon">
+        📖
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Total Enrollments
+        </span>
+
+        <strong>
+          {{ totalEnrollments | number }}
+        </strong>
+
+        <span class="growth">
+          ↑ 12%
+        </span>
+
+        <small>
+          vs last semester
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- Active Batches -->
+
+    <div class="stat-card blue-card">
+
+      <div class="stat-icon blue-icon">
+        🔗
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Active Batches
+        </span>
+
+        <strong>
+          {{ activeBatches }}
+        </strong>
+
+        <span class="growth">
+          ↑ 8
+        </span>
+
+        <small>
+          currently running
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= TABS ================= -->
+
+  <div class="tabs-container">
+
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'courses'"
+      (click)="setTab('courses')"
+    >
+      <span class="tab-icon">📖</span>
+      Courses
+    </button>
+
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'batches'"
+      (click)="setTab('batches')"
+    >
+      <span class="tab-icon">👥</span>
+      Batches
+    </button>
+
+    <button
+      class="tab-button mapping-tab"
+      [class.active]="activeTab === 'mapping'"
+      (click)="setTab('mapping')"
+    >
+      <span class="tab-icon">🔗</span>
+      Course-Batch Mapping
+    </button>
+
+  </div>
+
+
+  <!-- ================= FILTER AREA ================= -->
+
+  <div class="filter-container">
+
+    <div class="search-box">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Search courses by name, code, or department..."
+      />
+
+    </div>
+
+
+    <select
+      [(ngModel)]="selectedDepartment"
+      class="filter-select"
+    >
+
+      <option>All Departments</option>
+      <option>Computer Science</option>
+      <option>Information Technology</option>
+      <option>Commerce</option>
+      <option>Management</option>
+
+    </select>
+
+
+    <select
+      [(ngModel)]="selectedStatus"
+      class="filter-select"
+    >
+
+      <option>All Status</option>
+      <option>Active</option>
+      <option>Inactive</option>
+
+    </select>
+
+
+    <select
+      [(ngModel)]="selectedSemester"
+      class="filter-select"
+    >
+
+      <option>All Semesters</option>
+      <option>Semester 1</option>
+      <option>Semester 2</option>
+      <option>Semester 3</option>
+      <option>Semester 4</option>
+      <option>Semester 5</option>
+      <option>Semester 6</option>
+
+    </select>
+
+
+    <button
+      class="reset-btn"
+      (click)="resetFilters()"
+    >
+      ↻
+      Reset
+    </button>
+
+  </div>
+
+
+  <!-- ================= TABLE ================= -->
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th class="check-column">
+            <input type="checkbox">
+          </th>
+
+          <th class="number-column">
+            #
+          </th>
+
+          <th>
+            Course Name
+            <span class="sort-icon">↕</span>
+          </th>
+
+          <th>
+            Course Code
+            <span class="sort-icon">↕</span>
+          </th>
+
+          <th>
+            Department
+            <span class="sort-icon">↕</span>
+          </th>
+
+          <th>
+            Total Batches
+            <span class="sort-icon">↕</span>
+          </th>
+
+          <th>
+            Total Enrollments
+            <span class="sort-icon">↕</span>
+          </th>
+
+          <th>
+            Status
+            <span class="sort-icon">↕</span>
+          </th>
+
+          <th>
+            Actions
+            <span class="sort-icon">↕</span>
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr
+          *ngFor="let course of filteredCourses; let i = index"
+        >
+
+          <!-- Checkbox -->
+
+          <td class="check-column">
+
+            <input type="checkbox">
+
+          </td>
+
+
+          <!-- Number -->
+
+          <td class="number-column">
+
+            {{ i + 1 }}
+
+          </td>
+
+
+          <!-- Course Name -->
+
+          <td>
+
+            <div class="course-name-cell">
+
+              <div class="course-icon">
+                {{ course.icon }}
+              </div>
+
+              <span>
+                {{ course.name }}
+              </span>
+
+            </div>
+
+          </td>
+
+
+          <!-- Code -->
+
+          <td class="code-cell">
+
+            {{ course.code }}
+
+          </td>
+
+
+          <!-- Department -->
+
+          <td>
+
+            {{ course.department }}
+
+          </td>
+
+
+          <!-- Batches -->
+
+          <td class="center-cell">
+
+            {{ course.batches }}
+
+          </td>
+
+
+          <!-- Enrollments -->
+
+          <td class="center-cell">
+
+            {{ course.enrollments }}
+
+          </td>
+
+
+          <!-- Status -->
+
+          <td>
+
+            <span
+              class="status-badge"
+              [class.active-status]="course.status === 'Active'"
+              [class.inactive-status]="course.status === 'Inactive'"
+            >
+
+              <span class="status-dot"></span>
+
+              {{ course.status }}
+
+            </span>
+
+          </td>
+
+
+          <!-- Actions -->
+
+          <td>
+
+            <div class="action-buttons">
+
+              <button
+                class="action-btn view-btn"
+                title="View"
+                (click)="viewCourse(course)"
+              >
+                👁
+              </button>
+
+              <button
+                class="action-btn edit-btn"
+                title="Edit"
+                (click)="editCourse(course)"
+              >
+                ↗
+              </button>
+
+              <button
+                class="action-btn delete-btn"
+                title="Delete"
+                (click)="deleteCourse(course)"
+              >
+                🗑
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+
+        <!-- Empty result -->
+
+        <tr *ngIf="filteredCourses.length === 0">
+
+          <td colspan="9" class="no-data">
+
+            No courses found.
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+
+    <!-- ================= TABLE FOOTER ================= -->
+
+    <div class="table-footer">
+
+      <div class="showing-text">
+
+        Showing
+        <strong>1</strong>
+        to
+        <strong>{{ filteredCourses.length }}</strong>
+        of
+        <strong>42</strong>
+        courses
+
+      </div>
+
+
+      <div class="pagination">
+
+        <button
+          class="page-btn arrow"
+          (click)="previousPage()"
+        >
+          «
+        </button>
+
+        <button
+          class="page-btn selected"
+        >
+          1
+        </button>
+
+        <button class="page-btn">
+          2
+        </button>
+
+        <button class="page-btn">
+          3
+        </button>
+
+        <button class="page-btn">
+          4
+        </button>
+
+        <button class="page-btn">
+          5
+        </button>
+
+        <button
+          class="page-btn arrow"
+          (click)="nextPage()"
+        >
+          »
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

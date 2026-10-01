@@ -1,0 +1,441 @@
+<div class="skills-page">
+
+  <!-- ================= PAGE HEADER ================= -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>Skills Management</h1>
+
+      <p>
+        Manage skill categories and skills. Map skills with courses and track
+        student skill development.
+      </p>
+    </div>
+
+    <div class="header-right">
+
+      <div class="breadcrumb">
+        Admin&nbsp; / &nbsp;<strong>Skills</strong>
+      </div>
+
+      <button class="add-btn">
+        <span>＋</span>
+        Add Skill
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= STATISTICS ================= -->
+
+  <div class="stats-grid">
+
+    @for (stat of stats; track stat.title) {
+
+      <div class="stat-card" [class]="stat.color">
+
+        <div class="stat-icon">
+          {{ stat.icon }}
+        </div>
+
+        <div class="stat-content">
+
+          <span>{{ stat.title }}</span>
+
+          <h2>{{ stat.value }}</h2>
+
+          <div class="stat-change">
+            ↑ {{ stat.change }}
+          </div>
+
+          <small>
+            vs last semester
+          </small>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+
+  <!-- ================= ANALYTICS ================= -->
+
+  <div class="analytics-grid">
+
+
+    <!-- ===== SKILLS BY CATEGORY ===== -->
+
+    <div class="analytics-card">
+
+      <div class="analytics-header">
+
+        <div>
+          <h3>
+            ▥ &nbsp; Skills by Category
+          </h3>
+        </div>
+
+        <button class="view-btn">
+          View Details&nbsp; →
+        </button>
+
+      </div>
+
+
+      <div class="category-content">
+
+        <!-- DONUT -->
+
+        <div class="donut-wrapper">
+
+          <div class="donut-chart">
+
+            <div class="donut-center">
+
+              <strong>212</strong>
+
+              <span>Total Skills</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- LEGEND -->
+
+        <div class="category-list">
+
+          @for (category of categories; track category.name) {
+
+            <div class="category-row">
+
+              <div class="category-name">
+
+                <span
+                  class="category-dot"
+                  [class]="category.color">
+                </span>
+
+                <span>
+                  {{ category.name }}
+                </span>
+
+              </div>
+
+              <strong>
+                {{ category.value }}
+              </strong>
+
+              <small>
+                ({{ category.percent }}%)
+              </small>
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===== TOP SKILLS IN DEMAND ===== -->
+
+    <div class="analytics-card demand-card">
+
+      <div class="analytics-header">
+
+        <div>
+          <h3>
+            ↗ &nbsp; Top Skills in Demand
+          </h3>
+        </div>
+
+        <button class="view-btn">
+          View Report&nbsp; →
+        </button>
+
+      </div>
+
+
+      <div class="demand-list">
+
+        @for (skill of demandSkills; track skill.name) {
+
+          <div class="demand-row">
+
+            <span class="demand-name">
+              {{ skill.name }}
+            </span>
+
+            <div class="progress-area">
+
+              <div class="progress-bg">
+
+                <div
+                  class="progress-fill"
+                  [style.width.%]="skill.percent">
+                </div>
+
+              </div>
+
+            </div>
+
+            <strong>
+              {{ skill.value }}
+            </strong>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= FILTER BAR ================= -->
+
+  <div class="filter-card">
+
+    <div class="search-box">
+
+      <span>⌕</span>
+
+      <input
+        type="text"
+        placeholder="Search skills by name, category, or description..."
+      >
+
+    </div>
+
+
+    <select>
+      <option>All Categories</option>
+      <option>Programming</option>
+      <option>Data Analysis</option>
+      <option>Web Development</option>
+      <option>Soft Skills</option>
+      <option>Cloud & DevOps</option>
+      <option>Design & Tools</option>
+    </select>
+
+
+    <select>
+      <option>All Departments</option>
+      <option>Computer Science</option>
+      <option>Information Technology</option>
+      <option>Commerce</option>
+      <option>Management</option>
+    </select>
+
+
+    <select>
+      <option>All Status</option>
+      <option>Active</option>
+      <option>Inactive</option>
+    </select>
+
+
+    <button class="reset-btn">
+      ↻ &nbsp; Reset
+    </button>
+
+  </div>
+
+
+  <!-- ================= SKILLS TABLE ================= -->
+
+  <div class="table-card">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th class="check-column">
+            <input type="checkbox">
+          </th>
+
+          <th>#</th>
+
+          <th>
+            Skill Name
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Category
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Description
+          </th>
+
+          <th>
+            Mapped Courses
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Status
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Actions
+            <span class="sort">↕</span>
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        @for (skill of skills; track skill.id) {
+
+          <tr>
+
+            <td>
+              <input type="checkbox">
+            </td>
+
+
+            <td>
+              {{ skill.id }}
+            </td>
+
+
+            <td>
+
+              <div class="skill-name-cell">
+
+                <div
+                  class="skill-icon"
+                  [class]="skill.iconColor">
+                  {{ skill.icon }}
+                </div>
+
+                <span>
+                  {{ skill.name }}
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <td>
+
+              <span
+                class="category-badge"
+                [class]="skill.categoryColor">
+
+                {{ skill.category }}
+
+              </span>
+
+            </td>
+
+
+            <td class="description">
+              {{ skill.description }}
+            </td>
+
+
+            <td class="mapped">
+              {{ skill.courses }}
+            </td>
+
+
+            <td>
+
+              <span class="status active">
+                <i></i>
+                Active
+              </span>
+
+            </td>
+
+
+            <td>
+
+              <div class="actions">
+
+                <button class="action-btn view">
+                  👁
+                </button>
+
+                <button class="action-btn edit">
+                  ↗
+                </button>
+
+                <button class="action-btn delete">
+                  ♡
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+
+    <!-- ================= PAGINATION ================= -->
+
+    <div class="table-footer">
+
+      <span>
+        Showing 1 to 10 of 212 skills
+      </span>
+
+
+      <div class="pagination">
+
+        <button>«</button>
+
+        <button class="active-page">1</button>
+
+        <button>2</button>
+
+        <button>3</button>
+
+        <button>4</button>
+
+        <button>5</button>
+
+        <button>...</button>
+
+        <button>22</button>
+
+        <button>»</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

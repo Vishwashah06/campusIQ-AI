@@ -1,0 +1,152 @@
+<div class="admin-layout">
+
+  <!-- ================= SIDEBAR ================= -->
+
+  <aside class="admin-sidebar">
+
+    <!-- LOGO / BRAND -->
+    <div class="sidebar-brand">
+
+      <div class="brand-logo">
+        🎓
+      </div>
+
+      <div class="brand-content">
+
+        <h2>
+          CampusIQ <span>AI</span>
+        </h2>
+
+        <p>
+          AI Digital Twin for<br>
+          Smart Campus Intelligence
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- SIDEBAR MENU -->
+    <nav class="sidebar-menu">
+
+      <a
+        *ngFor="let item of menuItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{
+          exact: item.route === '/admin/dashboard'
+        }"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          {{ item.icon }}
+        </span>
+
+        <span class="menu-label">
+          {{ item.label }}
+        </span>
+
+      </a>
+
+    </nav>
+
+
+    <!-- SIDEBAR FOOTER -->
+    <div class="sidebar-footer">
+
+      <p>
+        Empowering<br>
+        Educational Ecosystems<br>
+        with Smarter Insights.
+      </p>
+
+    </div>
+
+  </aside>
+
+
+  <!-- ================= RIGHT SIDE ================= -->
+
+  <main class="admin-main">
+
+
+    <!-- ================= TOP NAVBAR ================= -->
+
+    <header class="admin-topbar">
+
+      <!-- SEARCH -->
+      <div class="topbar-search">
+
+        <span class="search-icon">
+          🔍
+        </span>
+
+        <input
+          type="text"
+          placeholder="Search users, courses, departments, or anything..."
+        />
+
+      </div>
+
+
+      <!-- RIGHT SIDE -->
+      <div class="topbar-right">
+
+        <!-- NOTIFICATION -->
+        <button
+          type="button"
+          class="notification-btn"
+        >
+
+          🔔
+
+          <span class="notification-count">
+            5
+          </span>
+
+        </button>
+
+
+        <!-- DIVIDER -->
+        <div class="topbar-divider"></div>
+
+
+        <!-- ADMIN PROFILE -->
+        <a
+          routerLink="/admin/profile"
+          class="admin-account"
+        >
+
+          <div class="admin-avatar">
+            👤
+          </div>
+
+          <span class="admin-name">
+            Admin
+          </span>
+
+          <span class="admin-arrow">
+            ▾
+          </span>
+
+        </a>
+
+      </div>
+
+    </header>
+
+
+    <!-- ================= PAGE CONTENT ================= -->
+
+    <section class="admin-content">
+
+      <router-outlet></router-outlet>
+
+    </section>
+
+
+  </main>
+
+</div>

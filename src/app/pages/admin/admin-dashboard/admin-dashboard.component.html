@@ -1,0 +1,400 @@
+<div class="dashboard-page">
+
+  <!-- ================= PAGE HEADER ================= -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>Welcome Admin! 👋</h1>
+
+      <p>
+        Manage, Monitor, and Grow Your Campus with AI-Powered insights.
+      </p>
+    </div>
+
+    <div class="header-right">
+
+      <div class="quote">
+        “Efficient Administration<br>
+        for a Smarter Campus”
+      </div>
+
+      <div class="date-card">
+
+        <div class="date-icon">
+          📅
+        </div>
+
+        <div>
+          <strong>Tuesday, 2 September 2025</strong>
+          <small>Here's what's happening today!</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= TOP STATISTICS ================= -->
+
+  <div class="stats-grid">
+
+    @for (stat of stats; track stat.title) {
+
+      <div class="stat-card" [class]="stat.className">
+
+        <div class="stat-icon">
+          {{ stat.icon }}
+        </div>
+
+        <div class="stat-content">
+
+          <span>{{ stat.title }}</span>
+
+          <h2>{{ stat.value }}</h2>
+
+          <div class="stat-change">
+            ↑ {{ stat.change }}
+          </div>
+
+          <small>{{ stat.note }}</small>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+
+  <!-- ================= MAIN GRID ================= -->
+
+  <div class="dashboard-grid">
+
+
+    <!-- ================= USER DISTRIBUTION ================= -->
+
+    <div class="dashboard-card user-card">
+
+      <div class="card-header">
+
+        <div>
+          <h3>▥ &nbsp; User Distribution</h3>
+          <p>Total users across different roles</p>
+        </div>
+
+        <a routerLink="/admin/users" class="view-btn">
+          View All Users →
+        </a>
+
+      </div>
+
+
+      <div class="user-distribution">
+
+        <div class="donut-wrapper">
+
+          <div class="donut-chart">
+
+            <div class="donut-center">
+              <strong>1,248</strong>
+              <span>Total Users</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="user-legend">
+
+          <div class="legend-row">
+            <span class="legend-dot students"></span>
+            <span>Students</span>
+            <strong>1,108</strong>
+            <small>(89%)</small>
+          </div>
+
+          <div class="legend-row">
+            <span class="legend-dot faculty"></span>
+            <span>Faculty</span>
+            <strong>86</strong>
+            <small>(7%)</small>
+          </div>
+
+          <div class="legend-row">
+            <span class="legend-dot admin"></span>
+            <span>Admin Staff</span>
+            <strong>32</strong>
+            <small>(3%)</small>
+          </div>
+
+          <div class="legend-row">
+            <span class="legend-dot others"></span>
+            <span>Others</span>
+            <strong>22</strong>
+            <small>(2%)</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================= DEPARTMENT OVERVIEW ================= -->
+
+    <div class="dashboard-card department-card">
+
+      <div class="card-header">
+
+        <div>
+          <h3>🏛️ &nbsp; Department Overview</h3>
+          <p>Number of users and courses in each department</p>
+        </div>
+
+        <a routerLink="/admin/departments" class="view-btn">
+          View All →
+        </a>
+
+      </div>
+
+
+      <div class="chart-legend">
+
+        <span>
+          <i class="chart-dot users-dot"></i>
+          Users
+        </span>
+
+        <span>
+          <i class="chart-dot courses-dot"></i>
+          Courses
+        </span>
+
+      </div>
+
+
+      <div class="bar-chart">
+
+        @for (department of departmentData; track department.name) {
+
+          <div class="bar-group">
+
+            <div class="bars">
+
+              <div
+                class="bar users-bar"
+                [style.height.px]="department.users / 2"
+              >
+                <span>{{ department.users }}</span>
+              </div>
+
+              <div
+                class="bar courses-bar"
+                [style.height.px]="department.courses * 4"
+              >
+                <span>{{ department.courses }}</span>
+              </div>
+
+            </div>
+
+            <label>
+              {{ department.name }}
+            </label>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+
+    <!-- ================= UPCOMING TASKS ================= -->
+
+    <div class="dashboard-card tasks-card">
+
+      <div class="card-header">
+
+        <h3>▣ &nbsp; Upcoming Tasks</h3>
+
+        <button class="text-btn">
+          View All
+        </button>
+
+      </div>
+
+
+      <div class="task-list">
+
+        @for (task of tasks; track task.title) {
+
+          <div class="task-item">
+
+            <div class="task-icon" [class]="task.className">
+              {{ task.icon }}
+            </div>
+
+            <div class="task-title">
+              {{ task.title }}
+            </div>
+
+            <strong>
+              {{ task.count }}
+            </strong>
+
+            <small>
+              {{ task.date }}
+            </small>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+
+    <!-- ================= COURSE STATISTICS ================= -->
+
+    <div class="dashboard-card course-card">
+
+      <div class="card-header">
+
+        <div>
+          <h3>🎓 &nbsp; Course & Batch Statistics</h3>
+        </div>
+
+        <button class="text-btn">
+          View Details →
+        </button>
+
+      </div>
+
+
+      <div class="course-stat-grid">
+
+        <div class="course-stat purple-box">
+          <span>📚</span>
+          <strong>42</strong>
+          <label>Total Courses</label>
+          <small>↑ 4%</small>
+        </div>
+
+        <div class="course-stat green-box">
+          <span>▤</span>
+          <strong>68</strong>
+          <label>Active Batches</label>
+          <small>↑ 6%</small>
+        </div>
+
+        <div class="course-stat orange-box">
+          <span>📖</span>
+          <strong>156</strong>
+          <label>Subjects</label>
+          <small>↑ 8%</small>
+        </div>
+
+        <div class="course-stat blue-box">
+          <span>🎓</span>
+          <strong>24</strong>
+          <label>Ongoing Semesters</label>
+          <small>↑ 2%</small>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================= SYSTEM ACTIVITY ================= -->
+
+    <div class="dashboard-card activity-card">
+
+      <div class="card-header">
+
+        <h3>◷ &nbsp; System Activity</h3>
+
+        <button class="text-btn">
+          View All
+        </button>
+
+      </div>
+
+
+      <div class="activity-list">
+
+        @for (activity of activities; track activity.title) {
+
+          <div class="activity-item">
+
+            <div class="activity-line"></div>
+
+            <div class="activity-icon">
+              {{ activity.icon }}
+            </div>
+
+            <span>
+              {{ activity.title }}
+            </span>
+
+            <small>
+              {{ activity.time }}
+            </small>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+
+    <!-- ================= ADMIN INSIGHTS ================= -->
+
+    <div class="dashboard-card insights-card">
+
+      <div class="card-header">
+
+        <h3>💡 &nbsp; Admin Insights</h3>
+
+      </div>
+
+
+      <div class="insight-list">
+
+        @for (insight of insights; track insight.text) {
+
+          <div class="insight-item">
+
+            <div class="insight-icon">
+              {{ insight.icon }}
+            </div>
+
+            <span>
+              {{ insight.text }}
+            </span>
+
+            <b>›</b>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= QUICK ACTIONS ================= -->
+</div>

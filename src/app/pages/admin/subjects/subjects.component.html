@@ -1,0 +1,396 @@
+<div class="subjects-page">
+
+  <!-- ================= TOP HEADER ================= -->
+
+  <!-- ================= PAGE TITLE ================= -->
+
+  <div class="page-heading">
+
+    <div>
+      <h1>Subjects Management</h1>
+
+      <p>
+        Add, edit, and organize subjects for each department and course.
+        Manage subject codes, credits, and semester allocation.
+      </p>
+    </div>
+
+    <div class="heading-right">
+
+      <div class="breadcrumb">
+        Admin <span>/</span> Subjects
+      </div>
+
+      <button class="add-btn" (click)="addSubject()">
+        <span>＋</span>
+        Add Subject
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= STATISTICS ================= -->
+
+  <div class="stats-grid">
+
+    <div class="stat-card purple">
+
+      <div class="stat-icon">
+        📖
+      </div>
+
+      <div class="stat-content">
+        <span>Total Subjects</span>
+        <h2>156</h2>
+        <div class="increase">↑ 8</div>
+        <small>vs last semester</small>
+      </div>
+
+    </div>
+
+
+    <div class="stat-card green">
+
+      <div class="stat-icon">
+        📚
+      </div>
+
+      <div class="stat-content">
+        <span>Core Subjects</span>
+        <h2>92</h2>
+        <div class="increase">↑ 6</div>
+        <small>vs last semester</small>
+      </div>
+
+    </div>
+
+
+    <div class="stat-card orange">
+
+      <div class="stat-icon">
+        📄
+      </div>
+
+      <div class="stat-content">
+        <span>Elective Subjects</span>
+        <h2>48</h2>
+        <div class="increase">↑ 4</div>
+        <small>vs last semester</small>
+      </div>
+
+    </div>
+
+
+    <div class="stat-card blue">
+
+      <div class="stat-icon">
+        &lt;/&gt;
+      </div>
+
+      <div class="stat-content">
+        <span>Skill-Based Subjects</span>
+        <h2>16</h2>
+        <div class="increase">↑ 2</div>
+        <small>vs last semester</small>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= FILTER AREA ================= -->
+
+  <div class="filter-card">
+
+    <div class="subject-search">
+
+      <span>⌕</span>
+
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="filterSubjects()"
+        placeholder="Search subject name, code, or department..."
+      />
+
+    </div>
+
+
+    <select [(ngModel)]="selectedDepartment" (change)="filterSubjects()">
+      <option value="All Departments">All Departments</option>
+      <option value="Computer Science">Computer Science</option>
+      <option value="Information Technology">Information Technology</option>
+      <option value="Commerce">Commerce</option>
+      <option value="Management">Management</option>
+    </select>
+
+
+    <select [(ngModel)]="selectedCourse" (change)="filterSubjects()">
+      <option value="All Courses">All Courses</option>
+      <option value="BCA">BCA</option>
+      <option value="MCA">MCA</option>
+      <option value="B.Com">B.Com</option>
+    </select>
+
+
+    <select [(ngModel)]="selectedSemester" (change)="filterSubjects()">
+      <option value="All Semesters">All Semesters</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+
+    <select [(ngModel)]="selectedType" (change)="filterSubjects()">
+      <option value="All Type">All Type</option>
+      <option value="Core">Core</option>
+      <option value="Elective">Elective</option>
+    </select>
+
+
+    <button class="reset-btn" (click)="resetFilters()">
+      ↻ &nbsp; Reset
+    </button>
+
+  </div>
+
+
+  <!-- ================= TABLE ================= -->
+
+  <div class="table-card">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th class="checkbox-col">
+            <input type="checkbox" />
+          </th>
+
+          <th>#</th>
+
+          <th>
+            Subject Name
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Subject Code
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Department
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Course
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Semester
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Type
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Credits
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Status
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Actions
+            <span class="sort">↕</span>
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        @for (subject of filteredSubjects; track subject.id; let i = $index) {
+
+          <tr>
+
+            <td class="checkbox-col">
+              <input type="checkbox" />
+            </td>
+
+            <td class="number">
+              {{ i + 1 }}
+            </td>
+
+
+            <td>
+
+              <div class="subject-name">
+
+                <div
+                  class="subject-icon"
+                  [ngClass]="subject.iconClass"
+                >
+                  {{ subject.icon }}
+                </div>
+
+                <span>
+                  {{ subject.name }}
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <td class="code">
+              {{ subject.code }}
+            </td>
+
+
+            <td>
+              {{ subject.department }}
+            </td>
+
+
+            <td>
+              {{ subject.course }}
+            </td>
+
+
+            <td class="semester">
+              {{ subject.semester }}
+            </td>
+
+
+            <td>
+
+              <span
+                class="type-badge"
+                [ngClass]="subject.type.toLowerCase()"
+              >
+                {{ subject.type }}
+              </span>
+
+            </td>
+
+
+            <td class="credits">
+              {{ subject.credits }}
+            </td>
+
+
+            <td>
+
+              <span
+                class="status-badge"
+                [ngClass]="subject.status.toLowerCase()"
+              >
+
+                <span class="status-dot"></span>
+
+                {{ subject.status }}
+
+              </span>
+
+            </td>
+
+
+            <td>
+
+              <div class="action-buttons">
+
+                <button
+                  class="action view"
+                  title="View"
+                  (click)="viewSubject(subject)"
+                >
+                  👁
+                </button>
+
+                <button
+                  class="action edit"
+                  title="Edit"
+                  (click)="editSubject(subject)"
+                >
+                  ↗
+                </button>
+
+                <button
+                  class="action delete"
+                  title="Delete"
+                  (click)="deleteSubject(subject)"
+                >
+                  🗑
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+
+    <!-- ================= TABLE FOOTER ================= -->
+
+    <div class="table-footer">
+
+      <div class="showing">
+        Showing
+        <strong>1 to 10</strong>
+        of
+        <strong>156</strong>
+        subjects
+      </div>
+
+
+      <div class="pagination">
+
+        <button>«</button>
+
+        <button class="active">1</button>
+
+        <button>2</button>
+
+        <button>3</button>
+
+        <button>4</button>
+
+        <button>5</button>
+
+        <button>...</button>
+
+        <button>16</button>
+
+        <button>»</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

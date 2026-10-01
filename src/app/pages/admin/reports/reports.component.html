@@ -1,0 +1,752 @@
+<div class="reports-page">
+
+  <!-- ================= TOP SEARCH BAR ================= -->
+
+  <!-- ================= PAGE HEADER ================= -->
+
+  <div class="page-heading">
+
+    <div>
+
+      <h1>Reports &amp; Analytics</h1>
+
+      <p>
+        Get insights about users, departments, courses, academic performance,
+        and overall campus activities.
+      </p>
+
+    </div>
+
+    <div class="heading-right">
+
+      <div class="breadcrumb">
+        Admin&nbsp; / &nbsp;Reports &amp; Analytics
+      </div>
+
+      <div class="date-selector">
+        <span class="calendar-icon">▣</span>
+        <span>1 Aug 2025 - 31 Aug 2025</span>
+        <span>⌄</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= STATISTICS ================= -->
+
+  <div class="stats-grid">
+
+    @for (stat of stats; track stat.title) {
+
+      <div class="stat-card" [class]="stat.color">
+
+        <div class="stat-icon">
+          {{ stat.icon }}
+        </div>
+
+        <div class="stat-info">
+
+          <span class="stat-title">
+            {{ stat.title }}
+          </span>
+
+          <h2>
+            {{ stat.value }}
+          </h2>
+
+          <div class="stat-change">
+            ↑ {{ stat.change }}
+          </div>
+
+          <small>
+            vs last month
+          </small>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+
+  <!-- ================= FIRST ANALYTICS ROW ================= -->
+
+  <div class="analytics-grid">
+
+
+    <!-- USER DISTRIBUTION -->
+
+    <div class="analytics-card user-distribution-card">
+
+      <div class="card-header">
+
+        <div class="card-title">
+
+          <span class="title-icon purple">♟</span>
+
+          <div>
+            <h3>User Distribution</h3>
+            <p>Total users across different roles</p>
+          </div>
+
+        </div>
+
+        <select>
+          <option>This Month</option>
+          <option>Last Month</option>
+          <option>This Year</option>
+        </select>
+
+      </div>
+
+
+      <div class="distribution-content">
+
+        <div class="donut-wrapper">
+
+          <div class="donut-chart">
+
+            <div class="donut-center">
+
+              <strong>1,248</strong>
+
+              <span>Total Users</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="distribution-list">
+
+          <div class="distribution-row">
+
+            <span class="distribution-dot students"></span>
+
+            <span>Students</span>
+
+            <strong>1,108</strong>
+
+            <small>(88.8%)</small>
+
+          </div>
+
+          <div class="distribution-row">
+
+            <span class="distribution-dot faculty"></span>
+
+            <span>Faculty</span>
+
+            <strong>86</strong>
+
+            <small>(6.9%)</small>
+
+          </div>
+
+          <div class="distribution-row">
+
+            <span class="distribution-dot staff"></span>
+
+            <span>Admin Staff</span>
+
+            <strong>32</strong>
+
+            <small>(2.6%)</small>
+
+          </div>
+
+          <div class="distribution-row">
+
+            <span class="distribution-dot other"></span>
+
+            <span>Other</span>
+
+            <strong>22</strong>
+
+            <small>(1.7%)</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- COURSE ENROLLMENT TREND -->
+
+    <div class="analytics-card enrollment-card">
+
+      <div class="card-header">
+
+        <div class="card-title">
+
+          <span class="title-icon purple">◆</span>
+
+          <div>
+            <h3>Course Enrollment Trend</h3>
+            <p>Monthly course enrollments</p>
+          </div>
+
+        </div>
+
+        <select>
+          <option>Last 6 Months</option>
+          <option>Last 12 Months</option>
+        </select>
+
+      </div>
+
+
+      <div class="line-chart">
+
+        <div class="chart-y-labels">
+
+          <span>1,000</span>
+          <span>800</span>
+          <span>600</span>
+          <span>400</span>
+          <span>200</span>
+          <span>0</span>
+
+        </div>
+
+
+        <div class="chart-area">
+
+          <div class="grid-line line-1"></div>
+          <div class="grid-line line-2"></div>
+          <div class="grid-line line-3"></div>
+          <div class="grid-line line-4"></div>
+          <div class="grid-line line-5"></div>
+
+          <div class="area-fill"></div>
+
+          <div class="trend-line"></div>
+
+          <div class="chart-point point-1">
+            <span>420</span>
+          </div>
+
+          <div class="chart-point point-2">
+            <span>560</span>
+          </div>
+
+          <div class="chart-point point-3">
+            <span>620</span>
+          </div>
+
+          <div class="chart-point point-4">
+            <span>700</span>
+          </div>
+
+          <div class="chart-point point-5">
+            <span>820</span>
+          </div>
+
+          <div class="chart-point point-6">
+            <span>920</span>
+          </div>
+
+          <div class="months">
+
+            <span>Jan</span>
+            <span>Feb</span>
+            <span>Mar</span>
+            <span>Apr</span>
+            <span>May</span>
+            <span>Jun</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- DEPARTMENT-WISE USERS -->
+
+    <div class="analytics-card department-users-card">
+
+      <div class="card-header">
+
+        <div class="card-title">
+
+          <span class="title-icon purple">▥</span>
+
+          <div>
+            <h3>Department-wise Users</h3>
+          </div>
+
+        </div>
+
+        <select>
+          <option>All Departments</option>
+        </select>
+
+      </div>
+
+
+      <div class="department-bars">
+
+        @for (department of departments; track department.name) {
+
+          <div class="department-row">
+
+            <span class="department-name">
+              {{ department.name }}
+            </span>
+
+            <div class="department-progress">
+
+              <div
+                class="department-fill"
+                [class]="department.color"
+                [style.width.%]="department.percent"
+              ></div>
+
+            </div>
+
+            <strong>
+              {{ department.value }}
+            </strong>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- ================= SECOND ANALYTICS ROW ================= -->
+
+  <div class="analytics-grid second-row">
+
+
+    <!-- SUBJECT PERFORMANCE -->
+
+    <div class="analytics-card performance-card">
+
+      <div class="card-header">
+
+        <div class="card-title">
+
+          <span class="title-icon purple">▮</span>
+
+          <div>
+            <h3>Subject Performance Overview</h3>
+            <p>Average performance across subjects</p>
+          </div>
+
+        </div>
+
+        <select>
+          <option>This Semester</option>
+          <option>Last Semester</option>
+        </select>
+
+      </div>
+
+
+      <div class="performance-chart">
+
+        <div class="performance-y">
+
+          <span>10</span>
+          <span>8</span>
+          <span>6</span>
+          <span>4</span>
+          <span>2</span>
+          <span>0</span>
+
+        </div>
+
+
+        <div class="performance-area">
+
+          <div class="performance-grid"></div>
+
+          <div class="performance-bars">
+
+            <div class="performance-column">
+              <strong>8.2</strong>
+              <div class="performance-bar" style="height:82%"></div>
+              <span>DS</span>
+            </div>
+
+            <div class="performance-column">
+              <strong>7.8</strong>
+              <div class="performance-bar" style="height:78%"></div>
+              <span>Web Dev</span>
+            </div>
+
+            <div class="performance-column">
+              <strong>8.5</strong>
+              <div class="performance-bar" style="height:85%"></div>
+              <span>DBMS</span>
+            </div>
+
+            <div class="performance-column">
+              <strong>7.0</strong>
+              <div class="performance-bar" style="height:70%"></div>
+              <span>OS</span>
+            </div>
+
+            <div class="performance-column">
+              <strong>8.1</strong>
+              <div class="performance-bar" style="height:81%"></div>
+              <span>AI</span>
+            </div>
+
+            <div class="performance-column">
+              <strong>7.6</strong>
+              <div class="performance-bar" style="height:76%"></div>
+              <span>CN</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SKILL DEVELOPMENT -->
+
+    <div class="analytics-card skill-card">
+
+      <div class="card-header">
+
+        <div class="card-title">
+
+          <span class="title-icon purple">↗</span>
+
+          <div>
+            <h3>Skill Development Analytics</h3>
+            <p>Top skills being developed by students</p>
+          </div>
+
+        </div>
+
+        <select>
+          <option>This Month</option>
+        </select>
+
+      </div>
+
+
+      <div class="skill-list">
+
+        <div class="skill-row">
+          <span>Python</span>
+          <div class="skill-progress">
+            <div style="width:90%"></div>
+          </div>
+          <strong>180</strong>
+        </div>
+
+        <div class="skill-row">
+          <span>JavaScript</span>
+          <div class="skill-progress">
+            <div style="width:75%"></div>
+          </div>
+          <strong>150</strong>
+        </div>
+
+        <div class="skill-row">
+          <span>SQL</span>
+          <div class="skill-progress">
+            <div style="width:70%"></div>
+          </div>
+          <strong>140</strong>
+        </div>
+
+        <div class="skill-row">
+          <span>Communication</span>
+          <div class="skill-progress">
+            <div style="width:60%"></div>
+          </div>
+          <strong>120</strong>
+        </div>
+
+        <div class="skill-row">
+          <span>Problem Solving</span>
+          <div class="skill-progress">
+            <div style="width:55%"></div>
+          </div>
+          <strong>110</strong>
+        </div>
+
+        <div class="skill-row">
+          <span>Cloud Computing</span>
+          <div class="skill-progress">
+            <div style="width:48%"></div>
+          </div>
+          <strong>95</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ACADEMIC ACTIVITY -->
+
+    <div class="analytics-card academic-card">
+
+      <div class="card-header">
+
+        <div class="card-title">
+
+          <span class="title-icon purple">↗</span>
+
+          <div>
+            <h3>Academic Activity Overview</h3>
+          </div>
+
+        </div>
+
+        <select>
+          <option>This Month</option>
+        </select>
+
+      </div>
+
+
+      <div class="academic-grid">
+
+        <div class="academic-item purple-academic">
+
+          <div class="academic-icon">▤</div>
+
+          <div>
+            <span>Assignments Submitted</span>
+            <strong>3,420 <small>↑ 14%</small></strong>
+          </div>
+
+        </div>
+
+
+        <div class="academic-item green-academic">
+
+          <div class="academic-icon">✓</div>
+
+          <div>
+            <span>Tests Conducted</span>
+            <strong>620 <small>↑ 10%</small></strong>
+          </div>
+
+        </div>
+
+
+        <div class="academic-item orange-academic">
+
+          <div class="academic-icon">★</div>
+
+          <div>
+            <span>Certifications Earned</span>
+            <strong>182 <small>↑ 22%</small></strong>
+          </div>
+
+        </div>
+
+
+        <div class="academic-item blue-academic">
+
+          <div class="academic-icon">▣</div>
+
+          <div>
+            <span>Placement Readiness</span>
+            <strong>78% <small>↑ 6%</small></strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= BOTTOM ROW ================= -->
+
+  <div class="bottom-grid">
+
+
+    <!-- RECENT ACTIVITIES -->
+
+    <div class="bottom-card recent-card">
+
+      <div class="bottom-header">
+
+        <h3>◷ &nbsp; Recent Activities</h3>
+
+      </div>
+
+
+      <div class="activity-table">
+
+        <div class="activity-head">
+          <span>#</span>
+          <span>Activity</span>
+          <span>Type</span>
+          <span>Details</span>
+          <span>Date</span>
+        </div>
+
+
+        <div class="activity-row">
+          <span>1</span>
+          <span>🎓 &nbsp; New course added</span>
+          <span class="type course">Course</span>
+          <span>Machine Learning (CS)</span>
+          <span>2 Sep 2025</span>
+        </div>
+
+        <div class="activity-row">
+          <span>2</span>
+          <span>👥 &nbsp; Batch created</span>
+          <span class="type batch">Batch</span>
+          <span>BCA Sem 3 - 2025</span>
+          <span>2 Sep 2025</span>
+        </div>
+
+        <div class="activity-row">
+          <span>3</span>
+          <span>📖 &nbsp; Subject updated</span>
+          <span class="type subject">Subject</span>
+          <span>Database Management</span>
+          <span>1 Sep 2025</span>
+        </div>
+
+        <div class="activity-row">
+          <span>4</span>
+          <span>👤 &nbsp; New user registered</span>
+          <span class="type user">User</span>
+          <span>Faculty - Dr. Neha Mehta</span>
+          <span>1 Sep 2025</span>
+        </div>
+
+        <div class="activity-row">
+          <span>5</span>
+          <span>⚙ &nbsp; Skill category added</span>
+          <span class="type skill">Skill</span>
+          <span>Cloud &amp; DevOps</span>
+          <span>31 Aug 2025</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- REPORTS & DOWNLOADS -->
+
+    <div class="bottom-card downloads-card">
+
+      <div class="bottom-header">
+
+        <h3>⇩ &nbsp; Reports &amp; Downloads</h3>
+
+        <button>View All</button>
+
+      </div>
+
+
+      <div class="download-list">
+
+        <div class="download-item">
+
+          <div class="download-icon orange">
+            ▤
+          </div>
+
+          <div class="download-info">
+            <strong>User Summary Report</strong>
+            <span>Complete user statistics with role-wise distribution</span>
+          </div>
+
+          <button class="download-btn">
+            ⇩ Download
+          </button>
+
+        </div>
+
+
+        <div class="download-item">
+
+          <div class="download-icon blue">
+            ◆
+          </div>
+
+          <div class="download-info">
+            <strong>Course &amp; Enrollment Report</strong>
+            <span>Detailed course-wise enrollment data</span>
+          </div>
+
+          <button class="download-btn">
+            ⇩ Download
+          </button>
+
+        </div>
+
+
+        <div class="download-item">
+
+          <div class="download-icon orange">
+            ▣
+          </div>
+
+          <div class="download-info">
+            <strong>Department Performance Report</strong>
+            <span>Department-wise analytics and comparison</span>
+          </div>
+
+          <button class="download-btn">
+            ⇩ Download
+          </button>
+
+        </div>
+
+
+        <div class="download-item">
+
+          <div class="download-icon pink">
+            ♟
+          </div>
+
+          <div class="download-info">
+            <strong>Skill Development Report</strong>
+            <span>Top skills and student progress analysis</span>
+          </div>
+
+          <button class="download-btn">
+            ⇩ Download
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

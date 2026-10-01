@@ -1,0 +1,535 @@
+<div class="users-page">
+
+  <!-- ================= TOP SEARCH BAR ================= -->
+  <!-- ================= PAGE HEADER ================= -->
+
+  <div class="page-header">
+
+    <div>
+
+      <h1>Users Management</h1>
+
+      <p>
+        Manage all students, faculty, and staff.
+        Add, edit, deactivate users and control their access.
+      </p>
+
+    </div>
+
+    <div class="header-right">
+
+      <div class="breadcrumb">
+        Admin&nbsp; / &nbsp;Users
+      </div>
+
+      <button
+        class="add-user-btn"
+        (click)="addNewUser()"
+      >
+        <span>＋</span>
+        Add New User
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= STATISTICS ================= -->
+
+  <div class="stats-grid">
+
+    <!-- TOTAL USERS -->
+
+    <div class="stat-card purple-card">
+
+      <div class="stat-icon purple-icon">
+        👥
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Total Users
+        </span>
+
+        <strong>
+          1,248
+        </strong>
+
+        <div class="growth">
+          ↑ 5%
+        </div>
+
+        <small>
+          vs last month
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- STUDENTS -->
+
+    <div class="stat-card green-card">
+
+      <div class="stat-icon green-icon">
+        🎓
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Students
+        </span>
+
+        <strong>
+          1,108
+        </strong>
+
+        <div class="growth">
+          ↑ 6%
+        </div>
+
+        <small>
+          vs last month
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- FACULTY -->
+
+    <div class="stat-card orange-card">
+
+      <div class="stat-icon orange-icon">
+        👤
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Faculty
+        </span>
+
+        <strong>
+          86
+        </strong>
+
+        <div class="growth">
+          ↑ 2%
+        </div>
+
+        <small>
+          vs last month
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- ADMIN -->
+
+    <div class="stat-card blue-card">
+
+      <div class="stat-icon blue-icon">
+        ⚙
+      </div>
+
+      <div class="stat-content">
+
+        <span class="stat-title">
+          Admin Staff
+        </span>
+
+        <strong>
+          32
+        </strong>
+
+        <div class="growth">
+          ↑ 3%
+        </div>
+
+        <small>
+          vs last month
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= FILTER AREA ================= -->
+
+  <div class="filter-box">
+
+    <!-- SEARCH -->
+
+    <div class="table-search">
+
+      <span>⌕</span>
+
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (ngModelChange)="onFilterChange()"
+        placeholder="Search by name, email, roll no, department..."
+      />
+
+    </div>
+
+
+    <!-- ROLE -->
+
+    <select
+      [(ngModel)]="selectedRole"
+      (ngModelChange)="onFilterChange()"
+    >
+
+      <option>All Roles</option>
+      <option>Student</option>
+      <option>Faculty</option>
+      <option>Admin</option>
+
+    </select>
+
+
+    <!-- DEPARTMENT -->
+
+    <select
+      [(ngModel)]="selectedDepartment"
+      (ngModelChange)="onFilterChange()"
+    >
+
+      <option>All Departments</option>
+      <option>Computer Science</option>
+      <option>Information Technology</option>
+      <option>Management</option>
+      <option>Commerce</option>
+      <option>Administration</option>
+
+    </select>
+
+
+    <!-- STATUS -->
+
+    <select
+      [(ngModel)]="selectedStatus"
+      (ngModelChange)="onFilterChange()"
+    >
+
+      <option>All Status</option>
+      <option>Active</option>
+      <option>Inactive</option>
+
+    </select>
+
+
+    <!-- RESET -->
+
+    <button
+      class="reset-btn"
+      (click)="resetFilters()"
+    >
+      ↻
+      Reset
+    </button>
+
+  </div>
+
+
+  <!-- ================= USERS TABLE ================= -->
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th class="checkbox-column">
+            <input type="checkbox">
+          </th>
+
+          <th>#</th>
+
+          <th>
+            Name
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Email
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Role
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Department
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Status
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Joined On
+            <span class="sort">↕</span>
+          </th>
+
+          <th>
+            Actions
+            <span class="sort">↕</span>
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr
+          *ngFor="let user of paginatedUsers; let i = index"
+        >
+
+          <!-- CHECKBOX -->
+
+          <td>
+            <input type="checkbox">
+          </td>
+
+
+          <!-- NUMBER -->
+
+          <td class="number-cell">
+            {{ ((currentPage - 1) * itemsPerPage) + i + 1 }}
+          </td>
+
+
+          <!-- NAME -->
+
+          <td>
+
+            <div class="user-name">
+
+              <div
+                class="initial-avatar"
+                [ngClass]="user.color"
+              >
+                {{ user.initials }}
+              </div>
+
+              <span>
+                {{ user.name }}
+              </span>
+
+            </div>
+
+          </td>
+
+
+          <!-- EMAIL -->
+
+          <td class="email-cell">
+            {{ user.email }}
+          </td>
+
+
+          <!-- ROLE -->
+
+          <td>
+
+            <span
+              class="role-badge"
+              [ngClass]="{
+                'student-role': user.role === 'Student',
+                'faculty-role': user.role === 'Faculty',
+                'admin-role': user.role === 'Admin'
+              }"
+            >
+              {{ user.role }}
+            </span>
+
+          </td>
+
+
+          <!-- DEPARTMENT -->
+
+          <td>
+            {{ user.department }}
+          </td>
+
+
+          <!-- STATUS -->
+
+          <td>
+
+            <span
+              class="status-badge"
+              [ngClass]="{
+                'active-status': user.status === 'Active',
+                'inactive-status': user.status === 'Inactive'
+              }"
+            >
+
+              <span class="status-dot"></span>
+
+              {{ user.status }}
+
+            </span>
+
+          </td>
+
+
+          <!-- JOINED -->
+
+          <td>
+            {{ user.joinedOn }}
+          </td>
+
+
+          <!-- ACTIONS -->
+
+          <td>
+
+            <div class="actions">
+
+              <button
+                class="action-btn view-btn"
+                title="View"
+                (click)="viewUser(user)"
+              >
+                👁
+              </button>
+
+              <button
+                class="action-btn edit-btn"
+                title="Edit"
+                (click)="editUser(user)"
+              >
+                ↗
+              </button>
+
+              <button
+                class="action-btn delete-btn"
+                title="Delete"
+                (click)="deleteUser(user)"
+              >
+                🗑
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+
+        <!-- EMPTY -->
+
+        <tr *ngIf="paginatedUsers.length === 0">
+
+          <td
+            colspan="9"
+            class="empty-row"
+          >
+            No users found.
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <!-- ================= PAGINATION ================= -->
+
+  <div class="pagination-area">
+
+    <div class="showing-text">
+
+      Showing
+      {{ showingFrom }}
+      to
+      {{ showingTo }}
+      of
+      <strong>{{ totalUsers }}</strong>
+      users
+
+    </div>
+
+
+    <div class="pagination">
+
+      <!-- FIRST -->
+
+      <button
+        (click)="firstPage()"
+        [disabled]="currentPage === 1"
+      >
+        «
+      </button>
+
+
+      <!-- PREVIOUS -->
+
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+      >
+        ‹
+      </button>
+
+
+      <!-- PAGE NUMBERS -->
+
+      <button
+        *ngFor="let page of pageNumbers"
+        [class.active-page]="page === currentPage"
+        (click)="changePage(page)"
+      >
+        {{ page }}
+      </button>
+
+
+      <!-- NEXT -->
+
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+      >
+        ›
+      </button>
+
+
+      <!-- LAST -->
+
+      <button
+        (click)="lastPage()"
+        [disabled]="currentPage === totalPages"
+      >
+        »
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
